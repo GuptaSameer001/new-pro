@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>About - Kashi Yatra</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel&family=Open+Sans&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0; padding: 0; box-sizing: border-box;
+      font-family: 'Open Sans', sans-serif;
+    }
+    body {
+      background: url('https://source.unsplash.com/1600x900/?varanasi,ganga') no-repeat center center fixed;
+      background-size: cover;
+      color: white;
+    }
+    header {
+      background-color: rgba(0, 0, 0, 0.6);
+      padding: 1rem;
+      text-align: center;
+    }
+    header h1 {
+      font-family: 'Cinzel', serif;
+      font-size: 2rem;
+      color: gold;
+    }
+    .lang-toggle {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+    }
+    .about-section {
+      background-color: rgba(0, 0, 0, 0.75);
+      max-width: 800px;
+      margin: 3rem auto;
+      padding: 2rem;
+      border-radius: 15px;
+    }
+    .about-section h2 {
+      font-family: 'Cinzel', serif;
+      font-size: 1.8rem;
+      color: gold;
+      text-align: center;
+      margin-bottom: 1rem;
+    }
+    .about-section p {
+      font-size: 1rem;
+      line-height: 1.8;
+    }
+    @media (max-width: 600px) {
+      .about-section {
+        margin: 2rem 1rem;
+        padding: 1.5rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="lang-toggle">
+    <select onchange="switchLang(this.value)">
+      <option value="en">English</option>
+      <option value="hi">हिंदी</option>
+    </select>
+  </div>
+
+  <header>
+    <h1 id="page-title">About Kashi Yatra</h1>
+  </header>
+
+  <section class="about-section">
+    <h2 id="heading">Experience the Soul of Varanasi</h2>
+    <p id="content">
+      Kashi Yatra is your gateway to the ancient city of Varanasi — the spiritual heart of India. We offer luxury tour packages, hotel stays, and guided experiences to make your journey divine and unforgettable. Whether it's a Ganga Aarti, a temple visit, or a peaceful stay along the ghats — Kashi Yatra ensures comfort, culture, and care at every step.
+    </p>
+  </section>
+
+  <script>
+    const translations = {
+      hi: {
+        title: "काशी यात्रा के बारे में",
+        heading: "वाराणसी की आत्मा को महसूस करें",
+        content: `काशी यात्रा आपको भारत के सबसे प्राचीन और पवित्र नगर, वाराणसी की यात्रा पर ले जाती है। हम शानदार टूर पैकेज, होटल बुकिंग और स्थानीय गाइड अनुभव प्रदान करते हैं। चाहे गंगा आरती हो, मंदिर दर्शन या घाटों पर एक शांत प्रवास — काशी यात्रा आपको हर कदम पर आराम, संस्कृति और सेवा देती है।`
+      },
+      en: {
+        title: "About Kashi Yatra",
+        heading: "Experience the Soul of Varanasi",
+        content: `Kashi Yatra is your gateway to the ancient city of Varanasi — the spiritual heart of India. We offer luxury tour packages, hotel stays, and guided experiences to make your journey divine and unforgettable. Whether it's a Ganga Aarti, a temple visit, or a peaceful stay along the ghats — Kashi Yatra ensures comfort, culture, and care at every step.`
+      }
+    };
+
+    function switchLang(lang) {
+      document.getElementById("page-title").innerText = translations[lang].title;
+      document.getElementById("heading").innerText = translations[lang].heading;
+      document.getElementById("content").innerText = translations[lang].content;
+    }
+
+    // Default language
+    switchLang("en");
+  </script>
+
+</body>
+</html>
