@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Login / Register - Kashi Yatra</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel&family=Open+Sans&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0; padding: 0; box-sizing: border-box;
+      font-family: 'Open Sans', sans-serif;
+    }
+    body {
+      background: url('https://source.unsplash.com/1600x900/?indian,temple') no-repeat center center fixed;
+      background-size: cover;
+      color: white;
+    }
+    header {
+      background-color: rgba(0, 0, 0, 0.6);
+      padding: 1rem;
+      text-align: center;
+    }
+    header h1 {
+      font-family: 'Cinzel', serif;
+      font-size: 2rem;
+      color: gold;
+    }
+    .lang-toggle {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+    }
+    .form-box {
+      background: rgba(0, 0, 0, 0.7);
+      max-width: 400px;
+      margin: 3rem auto;
+      padding: 2rem;
+      border-radius: 15px;
+    }
+    .form-box h2 {
+      text-align: center;
+      margin-bottom: 1rem;
+      font-family: 'Cinzel', serif;
+    }
+    label {
+      display: block;
+      margin: 0.8rem 0 0.3rem;
+      font-weight: bold;
+    }
+    input {
+      width: 100%;
+      padding: 0.6rem;
+      border: none;
+      border-radius: 8px;
+    }
+    .btn {
+      width: 100%;
+      padding: 0.8rem;
+      background-color: gold;
+      color: black;
+      font-weight: bold;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      margin-top: 1rem;
+      font-size: 1rem;
+    }
+    .switch {
+      margin-top: 1rem;
+      text-align: center;
+    }
+    .switch a {
+      color: gold;
+      cursor: pointer;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="lang-toggle">
+    <select onchange="switchLang(this.value)">
+      <option value="en">English</option>
+      <option value="hi">हिंदी</option>
+    </select>
+  </div>
+
+  <header>
+    <h1>Kashi Yatra - <span id="page-title">Login</span></h1>
+  </header>
+
+  <div class="form-box" id="form-container">
+    <h2 id="form-header">Login</h2>
+    <form>
+      <label id="email-label">Email</label>
+      <input type="email" required />
+
+      <label id="password-label">Password</label>
+      <input type="password" required />
+
+      <button type="submit" class="btn" id="submit-btn">Login</button>
+    </form>
+    <div class="switch">
+      <span id="switch-text">Don't have an account? <a onclick="toggleForm()">Register</a></span>
+    </div>
+  </div>
+
+  <script>
+    let isLogin = true;
+
+    const text = {
+      en: {
+        login: "Login",
+        register: "Register",
+        email: "Email",
+        password: "Password",
+        name: "Full Name",
+        confirm: "Confirm Password",
+        loginBtn: "Login",
+        registerBtn: "Register",
+        switchToRegister: "Don't have an account? ",
+        switchToLogin: "Already have an account? ",
+      },
+      hi: {
+        login: "लॉग इन करें",
+        register: "पंजीकरण करें",
+        email: "ईमेल",
+        password: "पासवर्ड",
+        name: "पूरा नाम",
+        confirm: "पासवर्ड की पुष्टि करें",
+        loginBtn: "लॉग इन",
+        registerBtn: "पंजीकरण",
+        switchToRegister: "कोई खाता नहीं है? ",
+        switchToLogin: "पहले से खाता है? ",
+      }
+    };
+
+    function switchLang(lang) {
+      const t = text[lang];
+      document.getElementById("page-title").innerText = isLogin ? t.login : t.register;
+      document.getElementById("form-header").innerText = isLogin ? t.login : t.register;
+      document.getElementById("email-label").innerText = t.email;
+      document.getElementById("password-label").innerText = t.password;
+      document.getElementById("submit-btn").innerText = isLogin ? t.loginBtn : t.registerBtn;
+
+      const switchText = isLogin ? t.switchToRegister : t.switchToLogin;
+      document.getElementById("switch-text").innerHTML = `${switchText} <a onclick="toggleForm()">${isLogin ? t.register : t.login}</a>`;
+
+      // Extra fields if register
+      if (!isLogin && lang === "hi") {
+        if (!document.getElementById("name-label")) {
+          addRegisterFields(t.name, t.confirm);
+        }
+      } else if (!isLogin && lang === "en") {
+        if (!document.getElementById("name-label")) {
+          addRegisterFields(t.name, t.confirm);
+        }
+      }
+    }
+
+    function addRegisterFields(nameLabel, confirmLabel) {
+      const form = document.querySelector("form");
+      const name = document.createElement("label");
+      name.id = "name-label";
+      name.innerText = nameLabel;
+      const nameInput = document.createElement("input");
+      nameInput.type = "text";
+      nameInput.required = true;
+
+      const confirm = document.createElement("label");
+      confirm.id = "confirm-label";
+      confirm.innerText = confirmLabel;
+      const confirmInput = document.createElement("input");
+      confirmInput.type = "password";
+      confirmInput.required = true;
+
+      form.insertBefore(name, form.firstChild);
+      form.insertBefore(nameInput, form.children[1]);
+
+      form.appendChild(confirm);
+      form.appendChild(confirmInput);
+    }
+
+    function toggleForm() {
+      isLogin = !isLogin;
+      switchLang(document.querySelector("select").value);
+      document.getElementById("form-container").querySelector("form").reset();
+      if (isLogin) {
+        document.getElementById("name-label")?.remove();
+        document.getElementById("confirm-label")?.remove();
+        document.querySelectorAll("input")[0]?.remove(); // name input
+        document.querySelectorAll("input")[2]?.remove(); // confirm input
+      }
+    }
+
+    // Initial load
+    switchLang("en");
+  </script>
+
+</body>
+</html>
