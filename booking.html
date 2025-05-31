@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Booking - Kashi Yatra</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel&family=Open+Sans&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0; padding: 0; box-sizing: border-box;
+      font-family: 'Open Sans', sans-serif;
+    }
+    body {
+      background: url('https://source.unsplash.com/1600x900/?hotel,india') no-repeat center center fixed;
+      background-size: cover;
+      color: white;
+    }
+    header {
+      background-color: rgba(0, 0, 0, 0.6);
+      padding: 1rem 2rem;
+      text-align: center;
+    }
+    header h1 {
+      font-family: 'Cinzel', serif;
+      font-size: 2rem;
+      color: gold;
+    }
+    .lang-toggle {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+    }
+    .form-container {
+      background-color: rgba(0, 0, 0, 0.7);
+      margin: 3rem auto;
+      padding: 2rem;
+      max-width: 500px;
+      border-radius: 15px;
+    }
+    .form-container h2 {
+      text-align: center;
+      margin-bottom: 1.5rem;
+      font-family: 'Cinzel', serif;
+    }
+    label {
+      display: block;
+      margin: 0.8rem 0 0.3rem;
+      font-weight: bold;
+    }
+    input, select {
+      width: 100%;
+      padding: 0.6rem;
+      border: none;
+      border-radius: 8px;
+    }
+    .btn {
+      width: 100%;
+      padding: 0.8rem;
+      background-color: gold;
+      color: black;
+      font-weight: bold;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      margin-top: 1rem;
+      font-size: 1rem;
+    }
+    @media (max-width: 600px) {
+      .form-container { margin: 2rem 1rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="lang-toggle">
+    <select onchange="switchLang(this.value)">
+      <option value="en">English</option>
+      <option value="hi">हिंदी</option>
+    </select>
+  </div>
+
+  <header>
+    <h1>Kashi Yatra - Booking</h1>
+  </header>
+
+  <div class="form-container">
+    <h2 id="form-title">Book Your Journey</h2>
+    <form>
+      <label id="name-label">Full Name</label>
+      <input type="text" required />
+
+      <label id="email-label">Email</label>
+      <input type="email" required />
+
+      <label id="date-label">Travel Date</label>
+      <input type="date" required />
+
+      <label id="people-label">No. of People</label>
+      <input type="number" min="1" required />
+
+      <label id="package-label">Package Type</label>
+      <select>
+        <option>Standard</option>
+        <option>Deluxe</option>
+        <option>Luxury</option>
+      </select>
+
+      <button type="submit" class="btn" id="submit-btn">Submit Booking</button>
+    </form>
+  </div>
+
+  <script>
+    const translations = {
+      hi: {
+        "form-title": "अपनी यात्रा बुक करें",
+        "name-label": "पूरा नाम",
+        "email-label": "ईमेल",
+        "date-label": "यात्रा की तारीख",
+        "people-label": "लोगों की संख्या",
+        "package-label": "पैकेज प्रकार",
+        "submit-btn": "बुक करें"
+      },
+      en: {
+        "form-title": "Book Your Journey",
+        "name-label": "Full Name",
+        "email-label": "Email",
+        "date-label": "Travel Date",
+        "people-label": "No. of People",
+        "package-label": "Package Type",
+        "submit-btn": "Submit Booking"
+      }
+    };
+
+    function switchLang(lang) {
+      for (let key in translations[lang]) {
+        document.getElementById(key).innerText = translations[lang][key];
+      }
+    }
+  </script>
+
+</body>
+</html>
