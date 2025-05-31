@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Contact - Kashi Yatra</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel&family=Open+Sans&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0; padding: 0; box-sizing: border-box;
+      font-family: 'Open Sans', sans-serif;
+    }
+    body {
+      background: url('https://source.unsplash.com/1600x900/?varanasi,boat') no-repeat center center fixed;
+      background-size: cover;
+      color: white;
+    }
+    header {
+      background-color: rgba(0, 0, 0, 0.6);
+      padding: 1rem;
+      text-align: center;
+    }
+    header h1 {
+      font-family: 'Cinzel', serif;
+      font-size: 2rem;
+      color: gold;
+    }
+    .lang-toggle {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+    }
+    .contact-container {
+      background-color: rgba(0, 0, 0, 0.75);
+      max-width: 700px;
+      margin: 3rem auto;
+      padding: 2rem;
+      border-radius: 15px;
+    }
+    .contact-container h2 {
+      font-family: 'Cinzel', serif;
+      font-size: 1.6rem;
+      color: gold;
+      text-align: center;
+      margin-bottom: 1rem;
+    }
+    label {
+      display: block;
+      margin: 0.8rem 0 0.3rem;
+      font-weight: bold;
+    }
+    input, textarea {
+      width: 100%;
+      padding: 0.7rem;
+      border-radius: 8px;
+      border: none;
+      margin-bottom: 1rem;
+    }
+    .btn {
+      background: gold;
+      color: black;
+      padding: 0.8rem;
+      border: none;
+      width: 100%;
+      border-radius: 10px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+    .info {
+      margin-top: 2rem;
+      text-align: center;
+      font-size: 0.95rem;
+      line-height: 1.6;
+    }
+    @media (max-width: 600px) {
+      .contact-container {
+        margin: 2rem 1rem;
+        padding: 1.5rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="lang-toggle">
+    <select onchange="switchLang(this.value)">
+      <option value="en">English</option>
+      <option value="hi">हिंदी</option>
+    </select>
+  </div>
+
+  <header>
+    <h1 id="page-title">Contact Us</h1>
+  </header>
+
+  <div class="contact-container">
+    <h2 id="contact-heading">Get in Touch</h2>
+    <form>
+      <label id="name-label">Full Name</label>
+      <input type="text" required />
+
+      <label id="email-label">Email</label>
+      <input type="email" required />
+
+      <label id="msg-label">Your Message</label>
+      <textarea rows="4" required></textarea>
+
+      <button type="submit" class="btn" id="submit-btn">Send Message</button>
+    </form>
+
+    <div class="info" id="contact-info">
+      📍 Kashi Yatra, Assi Ghat, Varanasi, India<br/>
+      📞 +91-9876543210<br/>
+      ✉️ contact@kashiyatra.com
+    </div>
+  </div>
+
+  <script>
+    const translations = {
+      en: {
+        title: "Contact Us",
+        heading: "Get in Touch",
+        name: "Full Name",
+        email: "Email",
+        message: "Your Message",
+        button: "Send Message",
+        info: `📍 Kashi Yatra, Assi Ghat, Varanasi, India<br/>📞 +91-9876543210<br/>✉️ contact@kashiyatra.com`
+      },
+      hi: {
+        title: "संपर्क करें",
+        heading: "हमसे संपर्क करें",
+        name: "पूरा नाम",
+        email: "ईमेल",
+        message: "आपका संदेश",
+        button: "संदेश भेजें",
+        info: `📍 काशी यात्रा, अस्सी घाट, वाराणसी, भारत<br/>📞 +91-9876543210<br/>✉️ contact@kashiyatra.com`
+      }
+    };
+
+    function switchLang(lang) {
+      document.getElementById("page-title").innerText = translations[lang].title;
+      document.getElementById("contact-heading").innerText = translations[lang].heading;
+      document.getElementById("name-label").innerText = translations[lang].name;
+      document.getElementById("email-label").innerText = translations[lang].email;
+      document.getElementById("msg-label").innerText = translations[lang].message;
+      document.getElementById("submit-btn").innerText = translations[lang].button;
+      document.getElementById("contact-info").innerHTML = translations[lang].info;
+    }
+
+    // Default language
+    switchLang("en");
+  </script>
+
+</body>
+</html>
