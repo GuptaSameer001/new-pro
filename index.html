@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Kashi Yatra - Home</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel&family=Open+Sans&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0; padding: 0; box-sizing: border-box;
+      font-family: 'Open Sans', sans-serif;
+    }
+    body {
+      background: url('https://source.unsplash.com/1600x900/?varanasi,ghat') no-repeat center center fixed;
+      background-size: cover;
+      color: white;
+    }
+    header {
+      background-color: rgba(0, 0, 0, 0.6);
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    header h1 {
+      font-family: 'Cinzel', serif;
+      font-size: 2rem;
+      color: gold;
+    }
+    nav a {
+      margin-left: 20px;
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    .hero {
+      height: 90vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 2rem;
+      background-color: rgba(0, 0, 0, 0.5);
+    }
+    .hero h2 {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+      font-family: 'Cinzel', serif;
+    }
+    .hero p {
+      font-size: 1.2rem;
+      margin-bottom: 2rem;
+    }
+    .btn {
+      padding: 0.8rem 2rem;
+      background-color: gold;
+      color: black;
+      font-weight: bold;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      font-size: 1rem;
+    }
+    .lang-toggle {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+    }
+    @media (max-width: 768px) {
+      .hero h2 { font-size: 2rem; }
+    }
+  </style>
+</head>
+<body>
+  <div class="lang-toggle">
+    <select onchange="switchLanguage(this.value)">
+      <option value="en">English</option>
+      <option value="hi">हिंदी</option>
+    </select>
+  </div>
+
+  <header>
+    <h1>Kashi Yatra</h1>
+    <nav>
+      <a href="#">Home</a>
+      <a href="#">About</a>
+      <a href="#">Booking</a>
+      <a href="#">Contact</a>
+      <a href="#">Login</a>
+      <a href="#">Register</a>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <h2 id="hero-title">Welcome to Kashi Yatra</h2>
+    <p id="hero-desc">Experience the divinity and luxury of Varanasi – Book your journey now!</p>
+    <button class="btn" onclick="window.location.href='booking.html'">Book Now</button>
+  </section>
+
+  <script>
+    const langData = {
+      hi: {
+        'hero-title': 'काशी यात्रा में आपका स्वागत है',
+        'hero-desc': 'वाराणसी की दिव्यता और भव्यता का अनुभव करें – अभी बुक करें!'
+      },
+      en: {
+        'hero-title': 'Welcome to Kashi Yatra',
+        'hero-desc': 'Experience the divinity and luxury of Varanasi – Book your journey now!'
+      }
+    };
+
+    function switchLanguage(lang) {
+      document.getElementById('hero-title').innerText = langData[lang]['hero-title'];
+      document.getElementById('hero-desc').innerText = langData[lang]['hero-desc'];
+    }
+  </script>
+</body>
+</html>
